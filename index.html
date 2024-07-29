@@ -94,14 +94,6 @@
 												<a class="image featured"><img src="images/summerprograms.jpg" alt="" /></a>
 												<strong>Summer Programs</strong>
 												<p>Some of the programs are in partnership with the most popular third party educational providers and have a very competitive placement each year. The programs vary each year by different campuses. Please contact us for the most recent flyer.</p>
-												<section>
-													<header class="major">
-														<h1>⠀</h1>
-														<h2>Popular Intellectual Testing Preparation</h2>
-														<p><a href="https://www.mba.com/exams/gmat-exam">GMAT</a><p>
-														<p><a href="https://www.lsac.org/lsat">LSAT</a><p>
-													</header>
-												</section>
 											</section>
 										</div>
 										<div class="col-6 col-12-medium">
@@ -149,7 +141,10 @@
 									<div class="row">
 										<div class="col-12">
 											<h2>External Resources<h2>
-											<h1>(leave links here later)</h1>
+											<h3>Popular Intellectual Testing Preparation</h3>
+											<p><a href="https://www.mba.com/exams/gmat-exam">GMAT</a><p>
+											<p><a href="https://www.lsac.org/lsat">LSAT</a><p>
+											<p><a href="https://erblearn.org/">ISSE</a><p>
 										</div>
 									</div>
 								</section>
@@ -164,9 +159,7 @@
 									<div class="row">
 										<div class="col-12">
 											<h2>Tuition</h2>
-											<a class="image featured"><img src="images/tuition.jpg" alt="" /></a>
-											<p>K-12 Tutorials and Special Education: $17,100 to $ 26,350, please refer to the website of the specific campus.<p>
-											<p> Summer Program: campus fee ($800 to $1950), plus a 15% administration fee.</p>
+											<p>For information regarding tuition, please click <a href="tuition.html">here</a>.</p>
 										</div>
 									</div>
 								</section>
@@ -174,33 +167,36 @@
 						</div>
 						<div class="wrapper style1">
 							<div class="inner">
-	
 								<!-- Feature 1 -->
-									<section class="container box feature1">
-										<div class="row">
-											<div class="col-12">
-												<div class="container">
-													<h1>Enquiries</h1>
-													
+								<section class="container box feature1">
+									<div class="row">
+										<div class="col-12">
+											<div class="container">
+												<h2>Enquiries</h2>
+						
+												<form id="enquiry-form">
 													<label for="email-input">Email Address:</label>
-													<input type="text" id="email-input" placeholder="Enter email address" />
-													
-													<label for="subject-input">Subject:</label>
-													<input type="text" id="subject-input" placeholder="Enter email subject" />
-													<br>
-													<br>
-													<label for="body-input">Body:</label>
-													<textarea id="body-input" placeholder="Enter email body" rows="5"></textarea>
-													
-													<button onclick="generateEmailLink()">Generate Email Link</button>
-													
-													<div id="email-link"></div>
-												</div>
+													<input type="email" id="email-input" placeholder="Enter email address" required />
+						
+													<label for="name-input">Child's Name:</label>
+													<input type="text" id="name-input" placeholder="Enter your name" required />
+						
+													<label for="grade-input">Grade:</label>
+													<input type="text" id="grade-input" placeholder="Enter your grade" required />
+						
+													<label for="info-input">Enquiry:</label>
+													<textarea id="info-input" placeholder="Enter additional information" rows="5" required></textarea>
+													<p></p>
+													<p>Please do not change the formatting once the email has been generated to ensure proper intepretation.</p>
+													<p></p>
+													<button type="button" onclick="generateEmailLink()">Send Email</button>
+												</form>
 											</div>
 										</div>
-									</section>
-								</div>
+									</div>
+								</section>
 							</div>
+						</div>
 			<!-- Footer Wrapper -->
 				<div id="footer-wrapper">
 					<footer id="footer" class="container">
@@ -216,9 +212,13 @@
 												<div class="col-6 col-12-small">
 													<dl class="contact">
 														<dt>WWW</dt>
-														<dd><a href="#">eyeducations.net</a></dd>
+														<dd><a href="http://eyeducations.net">eyeducations.net</a></dd>
 														<dt>Email</dt>
-														<dd><a href="#"></a></dd>
+														<dd><a href="mailto:inquiry@eyeducations.net">inquiry@eyeducations.net</a></dd>
+														<dt>Phone</dt>
+														<dd><a>+1 832-510-6599</a></dd>
+														<dt>Corporate Agent Address</dt>
+														<dd><a>108 W 13th St., Wilmington, DE, 19801, USA</a></dd>
 													</dl>
 												</div>
 											</div>
@@ -249,5 +249,36 @@
 			<style type="text/css">
 				center { text-align: left}
 			</style>
+		<script>
+			function generateEmailLink() {
+				// Pre-set recipient email address
+				var recipientEmail = 'inquiry@eyeducations.net'; // Replace with the desired recipient email address
+			
+				// Get input values
+				var senderEmail = document.getElementById('email-input').value;
+				var name = document.getElementById('name-input').value;
+				var grade = document.getElementById('grade-input').value;
+				var info = document.getElementById('info-input').value;
+			
+				// Validate input
+				if (!senderEmail || !name || !grade || !info) {
+					alert('Please fill in all fields.');
+					return;
+				}
+			
+				// Create mailto link
+				var subject = 'Enquiry from ' + encodeURIComponent(name);
+				var body = 'Name of the Child: ' + encodeURIComponent(name) +
+						   '\nGrade: ' + encodeURIComponent(grade) +
+						   '\nEnquiry: ' + encodeURIComponent(info);
+			
+				var mailtoLink = 'mailto:' + encodeURIComponent(recipientEmail) +
+								 '?subject=' + encodeURIComponent(subject) +
+								 '&body=' + encodeURIComponent(body);
+			
+				// Open the mailto link in a new email client window
+				window.location.href = mailtoLink;
+			}
+		</script>
 	</body>
 </html>

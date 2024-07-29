@@ -177,20 +177,20 @@
 												<form id="enquiry-form">
 													<label for="email-input">Email Address:</label>
 													<input type="email" id="email-input" placeholder="Enter email address" required />
-						
+												
 													<label for="name-input">Child's Name:</label>
-													<input type="text" id="name-input" placeholder="Enter your name" required />
-						
+													<input type="text" id="name-input" placeholder="Enter the child's name" required />
+												
 													<label for="grade-input">Grade:</label>
 													<input type="text" id="grade-input" placeholder="Enter your grade" required />
-						
+												
 													<label for="info-input">Enquiry:</label>
 													<textarea id="info-input" placeholder="Enter additional information" rows="5" required></textarea>
 													<p></p>
-													<p>Please do not change the formatting once the email has been generated to ensure proper intepretation.</p>
+													<p>Please do not change the formatting once the email has been generated to ensure proper interpretation.</p>
 													<p></p>
 													<button type="button" onclick="generateEmailLink()">Send Email</button>
-												</form>
+												</form>																																	
 											</div>
 										</div>
 									</div>
@@ -266,19 +266,24 @@
 					return;
 				}
 			
-				// Create mailto link
-				var subject = 'Enquiry from ' + encodeURIComponent(name);
-				var body = 'Name of the Child: ' + encodeURIComponent(name) +
-						   '\nGrade: ' + encodeURIComponent(grade) +
-						   '\nEnquiry: ' + encodeURIComponent(info);
+				// Encode subject and body with proper line breaks
+				var subject = 'Enquiry for ' + encodeURIComponent(name);
+				var body = 'Email Address: ' + senderEmail +
+						   '\nName of the Child: ' + name +
+						   '\nGrade: ' + grade +
+						   '\nEnquiry: ' + info;
 			
+				// Correctly format newline characters for email clients
+				var encodedBody = encodeURIComponent(body).replace(/%0A/g, '%0D%0A');
+			
+				// Construct mailto link
 				var mailtoLink = 'mailto:' + encodeURIComponent(recipientEmail) +
-								 '?subject=' + encodeURIComponent(subject) +
-								 '&body=' + encodeURIComponent(body);
+								 '?subject=' + subject +
+								 '&body=' + encodedBody;
 			
 				// Open the mailto link in a new email client window
 				window.location.href = mailtoLink;
 			}
-		</script>
+		</script>			
 	</body>
 </html>
